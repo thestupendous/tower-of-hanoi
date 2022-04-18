@@ -27,4 +27,11 @@ Algo -
 	source and target poles.
 
 
+General implementation -
+	Normally when this problem is solved using any programming language,
+	the solution is mostly printed on command line directly.
+	My approach is going to be writing a "general" code so that it can
+	be rendered visually using any tool or graphics interface tool. such
+	rendering may also allow for solution by user.
+
 	
