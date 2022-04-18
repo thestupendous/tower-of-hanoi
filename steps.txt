@@ -1,0 +1,30 @@
+Problem -
+  Rules
+	for n disks with increasing sizes and three poles, namely A, B, C.
+	disks can only be placed on one of the three poles.
+	disks can be moved from one pole to another.
+	only one disk can be moved from one pole to another at a time.
+	only topmost disk can be moved from one pole to be placed on another
+	at all times, up on any disk, only a smaller disk may be placed
+
+  Goal-> all disks are placed on pole A, with smallest on top and
+		largest on bottom. your goal is to move all disks to pole C
+		with smallest being on top and largest on bottom.
+
+
+
+Algo -
+	for n being disk number to move (which is also an indication of its size, 
+	larger the number, larger the size, 1 being smallest disk)
+
+	
+	for n'th disk, to move from pole "A" to pole "C" ->
+		1.move multiple n-1 disks from pole "A" to pole "B"
+		2.move single   n'th disk from pole "A" to pole "C"
+		3.move multiple n-1 disks from pole "B" to pole "C"
+
+	steps 1, and 3 make recursive calls to same function with different
+	source and target poles.
+
+
+	
