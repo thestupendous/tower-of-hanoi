@@ -6,10 +6,6 @@ type Stack struct {
 	Sslice []int
 }
 
-func (st *Stack) Init() {
-	st.Sslice = make([]int, 0)
-}
-
 func (st *Stack) Add(newDisk int) {
 	st.Sslice = append(st.Sslice, newDisk)
 }
@@ -38,7 +34,7 @@ func checkValid(fromPole, toPole Stack) bool {
 
 func (pole Stack) String() string {
 	var str string
-	for i := len(pole.Sslice) - 1; i > -1; i-- {
+	for i := 0; i < len(pole.Sslice); i++ {
 		str += fmt.Sprintf("\t")
 		for j := 1; j <= pole.Sslice[i]; j++ {
 			str += fmt.Sprintf("_")
@@ -50,30 +46,24 @@ func (pole Stack) String() string {
 
 func main() {
 	var poleA, poleB, poleC Stack
-	//	poleA = Stack{}
-	//	poleB = Stack{}
-	//	poleC = Stack{}
-	poleA.Init()
-	poleB.Init()
-	poleC.Init()
-
+	poleA = Stack{}
+	poleB = Stack{}
+	poleC = Stack{}
 	// setting A as source, B as intermediary, C as target pole
 	var poleNumber map[string]*Stack = make(map[string]*Stack)
 	poleNumber["A"] = &poleA
 	poleNumber["B"] = &poleB
 	poleNumber["C"] = &poleC
-	//	fmt.Printf("%T %+v", poleNumber, poleNumber)
+	fmt.Printf("%+v\n", poleNumber)
+	fmt.Println("Value of polenumber A :", poleNumber["A"])
 
 	var noOfDisks int
 	fmt.Scanf("%d", &noOfDisks)
 	//TODO	validation of number of disks 3 <= n <= 20
 
-	//initailly adding disks to pole A
 	for i := noOfDisks; i > 0; i-- {
 		poleA.Add(i)
 	}
-	//	fmt.Println(poleA.Sslice, "top :", poleA.Last())
-
 	var inputSource, inputDest string
 	var pickedDisk int
 	for true {
@@ -86,9 +76,9 @@ func main() {
 			fmt.Println("Invalid move")
 			continue
 		}
-		//		_ = pickedDisk
-		pickedDisk = (*poleNumber[inputSource]).Extract()
-		(*poleNumber[inputDest]).Add(pickedDisk)
+		_ = pickedDisk
+		//		pickedDisk = poleNumber[inputSource].Extract()
+		//		poleNumber[inputDest].Add(pickedDisk)
 
 	}
 }
