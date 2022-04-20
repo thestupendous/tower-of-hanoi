@@ -17,7 +17,7 @@ func (st *Stack) Extract() int {
 	return toReturn
 }
 
-func (st Stack) Last() int {
+func (st Stack) Top() int {
 	lastIndex := len(st.Sslice)
 	return st.Sslice[lastIndex]
 }
@@ -46,19 +46,27 @@ func (pole Stack) String() string {
 
 func main() {
 	var poleA, poleB, poleC Stack
+	poleA = Stack{}
+	poleB = Stack{}
+	poleC = Stack{}
+
 	// setting A as source, B as intermediary, C as target pole
-	var poleNumber map[string]Stack = make(map[string]Stack)
-	poleNumber["A"] = poleA
-	poleNumber["B"] = poleB
-	poleNumber["C"] = poleC
+	var poleNumber map[string]*Stack = make(map[string]*Stack)
+	poleNumber["A"] = &poleA
+	poleNumber["B"] = &poleB
+	poleNumber["C"] = &poleC
+	fmt.Printf("%T %+v", poleNumber, poleNumber)
 
 	var noOfDisks int
 	fmt.Scanf("%d", &noOfDisks)
 	//TODO	validation of number of disks 3 <= n <= 20
 
+	//initailly adding disks to pole A
 	for i := noOfDisks; i > 0; i-- {
 		poleA.Add(i)
 	}
+	fmt.Println(poleA.Sslice, "top :", poleA.Top())
+
 	var inputSource, inputDest string
 	var pickedDisk int
 	for true {
@@ -67,12 +75,13 @@ func main() {
 			fmt.Println(poleNumber[k])
 		}
 		fmt.Scanf("enter \"from to\" : %s %s", &inputSource, &inputDest)
-		if !checkValid(poleNumber[inputSource], poleNumber[inputDest]) {
+		if !checkValid(*poleNumber[inputSource], *poleNumber[inputDest]) {
 			fmt.Println("Invalid move")
 			continue
 		}
-		pickedDisk = poleNumber[inputSource].Extract()
-		poleNumber[inputDest].Add(pickedDisk)
+		_ = pickedDisk
+		pickedDisk = (*poleNumber[inputSource]).Extract()
+		(*poleNumber[inputDest]).Add(pickedDisk)
 
 	}
 }
