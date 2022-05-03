@@ -1,0 +1,133 @@
+A
+	*
+	**
+	***
+
+B
+
+C
+
+A
+	**
+	***
+
+B
+	*
+
+A
+	***
+
+B
+	*
+
+C
+	**
+
+starting game,  3  added to pole A
+A
+	*
+	**
+	***
+
+B
+
+C
+
+A
+	**
+	***
+
+B
+
+C
+	*
+
+A
+	***
+
+B
+	**
+
+C
+	*
+
+A
+	***
+
+B
+	*
+	**
+
+C
+
+B
+	*
+	**
+
+C
+	***
+
+A
+
+C
+	***
+
+A
+	*
+
+B
+	**
+
+A
+	*
+
+B
+
+C
+	**
+	***
+
+A
+
+B
+
+C
+	*
+	**
+	***
+
+		HURRAY!! YOU'VE WON 
+starting game,  2  added to pole A
+C
+
+A
+	*
+	**
+
+B
+
+A
+	**
+
+B
+	*
+
+C
+
+A
+
+B
+	*
+
+C
+	**
+
+A
+
+B
+
+C
+	*
+	**
+
+		HURRAY!! YOU'VE WON , you used  3  moves

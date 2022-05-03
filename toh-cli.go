@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"log"
+	"os"
+)
 
 type Stack struct {
 	Sslice []int
@@ -15,18 +20,25 @@ func (st *Stack) Add(newDisk int) {
 }
 
 func (st *Stack) Extract() int {
-	lastIndex := len(st.Sslice)
+	lastIndex := len(st.Sslice) - 1
 	toReturn := st.Sslice[lastIndex]
 	st.Sslice = st.Sslice[:lastIndex]
 	return toReturn
 }
 
 func (st Stack) Last() int {
-	lastIndex := len(st.Sslice)
+	//for empty stack, returning -1
+	if len(st.Sslice) == 0 {
+		return -1
+	}
+	lastIndex := len(st.Sslice) - 1
 	return st.Sslice[lastIndex]
 }
 
 func checkValid(fromPole, toPole Stack) bool {
+	if toPole.Last() < 0 { //meaning, any sized disk can be placed on empty pole
+		return true
+	}
 	currentDisk := fromPole.Last()
 	onDisk := toPole.Last()
 	if currentDisk < onDisk {
@@ -41,7 +53,7 @@ func (pole Stack) String() string {
 	for i := len(pole.Sslice) - 1; i > -1; i-- {
 		str += fmt.Sprintf("\t")
 		for j := 1; j <= pole.Sslice[i]; j++ {
-			str += fmt.Sprintf("_")
+			str += fmt.Sprintf("*")
 		}
 		str += "\n"
 	}
@@ -49,6 +61,10 @@ func (pole Stack) String() string {
 }
 
 func main() {
+	logFile, _ := os.OpenFile("output-of-toh-cli.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+	mw := io.MultiWriter(os.Stdout, logFile)
+	log.SetFlags(0) //because the timestamp prompt messes up cli output screen
+	log.SetOutput(mw)
 	var poleA, poleB, poleC Stack
 	//	poleA = Stack{}
 	//	poleB = Stack{}
@@ -62,7 +78,7 @@ func main() {
 	poleNumber["A"] = &poleA
 	poleNumber["B"] = &poleB
 	poleNumber["C"] = &poleC
-	//	fmt.Printf("%T %+v", poleNumber, poleNumber)
+	//	log.Printf("%T %+v", poleNumber, poleNumber)
 
 	var noOfDisks int
 	fmt.Scanf("%d", &noOfDisks)
@@ -72,23 +88,41 @@ func main() {
 	for i := noOfDisks; i > 0; i-- {
 		poleA.Add(i)
 	}
-	//	fmt.Println(poleA.Sslice, "top :", poleA.Last())
+	log.Println("starting game, ", noOfDisks, " added to pole A")
+	//	log.Println(poleA.Sslice, "top :", poleA.Last())
 
 	var inputSource, inputDest string
-	var pickedDisk int
+	var movesCounter, pickedDisk int
+	won := false
 	for true {
 		for k, _ := range poleNumber {
-			fmt.Println(k)
-			fmt.Println(poleNumber[k])
+			log.Println(k)
+			log.Println(poleNumber[k])
 		}
-		fmt.Scanf("enter \"from to\" : %s %s", &inputSource, &inputDest)
+		fmt.Printf("enter \"from to\" : ")
+		fmt.Scanf("%s %s", &inputSource, &inputDest)
+		movesCounter++
 		if !checkValid(*poleNumber[inputSource], *poleNumber[inputDest]) {
-			fmt.Println("Invalid move")
+			log.Println("Invalid move")
 			continue
 		}
 		//		_ = pickedDisk
 		pickedDisk = (*poleNumber[inputSource]).Extract()
 		(*poleNumber[inputDest]).Add(pickedDisk)
 
+		//if user has won, meaning all disks at pole C
+		if len(poleC.Sslice) == noOfDisks {
+			won = true
+			break
+		}
+
 	}
+	if won {
+		for k, _ := range poleNumber {
+			log.Println(k)
+			log.Println(poleNumber[k])
+		}
+		log.Println("\t\tHURRAY!! YOU'VE WON , you used ", movesCounter, " moves")
+	}
+
 }
