@@ -145,3 +145,118 @@ A
 
 B
 
+Enter the number of disk (1-10), more disks is higher difficulty,
+		for your first time, try with 1 : 
+starting game,  3  added to pole A
+A
+	*
+	**
+	***
+
+B
+
+C
+
+A
+	**
+	***
+
+B
+
+C
+	*
+
+B
+	**
+
+C
+	*
+
+A
+	***
+
+B
+	*
+	**
+
+C
+
+A
+	***
+
+A
+
+B
+	*
+	**
+
+C
+	***
+
+A
+	*
+
+B
+	**
+
+C
+	***
+
+A
+	*
+
+B
+
+C
+	**
+	***
+
+A
+
+B
+
+C
+	*
+	**
+	***
+
+		HURRAY!! YOU'VE WON , you used  7  moves
+Enter the number of disk (1-10), more disks is higher difficulty,
+		for your first time, try with 1 : 
+starting game,  3  added to pole A
+A
+	*
+	**
+	***
+
+B
+
+C
+
+A
+	**
+	***
+
+B
+
+C
+	*
+
+A
+	***
+
+B
+	**
+
+C
+	*
+
+A
+	***
+
+B
+	*
+	**
+
+C
+

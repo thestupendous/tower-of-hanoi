@@ -71,9 +71,6 @@ func main() {
 	log.SetFlags(0) //because the timestamp prompt messes up cli output screen
 	log.SetOutput(mw)
 	var poleA, poleB, poleC Stack
-	//	poleA = Stack{}
-	//	poleB = Stack{}
-	//	poleC = Stack{}
 	poleA.Init()
 	poleB.Init()
 	poleC.Init()
@@ -83,7 +80,6 @@ func main() {
 	poleNumber["A"] = &poleA
 	poleNumber["B"] = &poleB
 	poleNumber["C"] = &poleC
-	//	log.Printf("%T %+v", poleNumber, poleNumber)
 
 	var noOfDisks int
 	log.Printf("Enter the number of disk (1-10), more disks is higher difficulty,\n\t\tfor your first time, try with 1 : ")
@@ -97,26 +93,31 @@ func main() {
 	log.Println("starting game, ", noOfDisks, " added to pole A")
 	//	log.Println(poleA.Sslice, "top :", poleA.Last())
 
+	poleList := []string{"A", "B", "C"}
 	var inputSource, inputDest string
 	var movesCounter, pickedDisk int
 	won := false
 	for true {
-		for k, _ := range poleNumber {
+		//printing all three poles
+		for _, k := range poleList {
 			log.Println(k)
 			log.Println(poleNumber[k])
 		}
+		//reading input from user for a move
 		fmt.Printf("enter \"from to\" exp \"A B\" : ")
 		fmt.Scanf("%s %s", &inputSource, &inputDest)
 		movesCounter++
+		//checking if the input move is valid
 		if !checkValid(*poleNumber[inputSource], *poleNumber[inputDest]) {
 			log.Println("Invalid move")
 			continue
 		}
-		//		_ = pickedDisk
+		//executing the move played by user
 		pickedDisk = (*poleNumber[inputSource]).Extract()
 		(*poleNumber[inputDest]).Add(pickedDisk)
 
 		//if user has won, meaning all disks at pole C
+		//exit the game marking the player's victory
 		if len(poleC.Sslice) == noOfDisks {
 			won = true
 			break
