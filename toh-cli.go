@@ -86,6 +86,7 @@ func main() {
 	//	log.Printf("%T %+v", poleNumber, poleNumber)
 
 	var noOfDisks int
+	log.Printf("Enter the number of disk (1-10), more disks is higher difficulty,\n\t\tfor your first time, try with 1 : ")
 	fmt.Scanf("%d", &noOfDisks)
 	//TODO	validation of number of disks 3 <= n <= 20
 
@@ -104,7 +105,7 @@ func main() {
 			log.Println(k)
 			log.Println(poleNumber[k])
 		}
-		fmt.Printf("enter \"from to\" : ")
+		fmt.Printf("enter \"from to\" exp \"A B\" : ")
 		fmt.Scanf("%s %s", &inputSource, &inputDest)
 		movesCounter++
 		if !checkValid(*poleNumber[inputSource], *poleNumber[inputDest]) {

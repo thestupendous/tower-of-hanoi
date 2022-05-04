@@ -131,3 +131,17 @@ C
 	**
 
 		HURRAY!! YOU'VE WON , you used  3  moves
+Enter the number of disk (1-10), more disks is higher difficulty,
+		for your first time, try with 1 : 
+Enter the number of disk (1-10), more disks is higher difficulty,
+		for your first time, try with 1 : 
+Enter the number of disk (1-10), more disks is higher difficulty,
+		for your first time, try with 1 : 
+starting game,  1  added to pole A
+C
+
+A
+	*
+
+B
+
